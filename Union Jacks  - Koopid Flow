@@ -1,0 +1,1388 @@
+{
+  "version": "3.0",
+  "nodes": {
+    "main": {
+      "type": "entry",
+      "value": {
+        "event": "start"
+      },
+      "data": {
+        "position": {
+          "x": 226,
+          "y": 102
+        },
+        "label": "Avaya County Council",
+        "description": "Created by Koopid Essentials"
+      },
+      "name": "main",
+      "next": "node70182165"
+    },
+    "node70182165": {
+      "type": "displaycontrol",
+      "name": "node70182165",
+      "value": {
+        "input": false,
+        "attach": false,
+        "person": false,
+        "phone": false,
+        "menu": false
+      },
+      "data": {
+        "position": {
+          "x": 256,
+          "y": 199
+        }
+      },
+      "next": "Step1_Greeting1_Greeting"
+    },
+    "Step1_Greeting1_Greeting": {
+      "type": "output",
+      "name": "Step1_Greeting1_Greeting",
+      "value": {
+        "text": "Welcome to Avaya County Council. My name is Avi.",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 200,
+          "y": 290
+        },
+        "label": "Step1 Greeting",
+        "description": "Initial greeting"
+      },
+      "next": "Step3_Prompt1_PromptAssign"
+    },
+    "Step3_Prompt1_PromptAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt1_PromptAssign",
+      "value": {
+        "variable": "q1",
+        "expression": "Please let me know what I can help you with?"
+      },
+      "data": {
+        "position": {
+          "x": 200,
+          "y": 440
+        },
+        "label": "Step3 Prompt 1"
+      },
+      "next": "Step3_Prompt1_Prompt"
+    },
+    "Step3_Prompt1_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt1_Prompt",
+      "value": {
+        "text": "Please let me know what I can help you with?",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 200,
+          "y": 540
+        },
+        "description": "selection"
+      },
+      "next": "Step3_Prompt1_Action"
+    },
+    "Step3_Prompt1_Action": {
+      "type": "output",
+      "name": "Step3_Prompt1_Action",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/essentials/choices.html",
+        "replace": {},
+        "data": {
+          "values": [
+            {
+              "name": "Pay Council Tax"
+            },
+            {
+              "name": "Pay a Parking Fine"
+            },
+            {
+              "name": "Child Birth Registration"
+            },
+            {
+              "name": "Registration of the Deceased"
+            }
+          ]
+        }
+      },
+      "data": {
+        "position": {
+          "x": 200,
+          "y": 676
+        },
+        "description": "Pay Council Tax__Pay a Parking Fine__Child Birth Registration__Registration of the Deceased"
+      },
+      "next": "Step3_Prompt1_ActionResponse"
+    },
+    "Step3_Prompt1_ActionResponse": {
+      "type": "input",
+      "name": "Step3_Prompt1_ActionResponse",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 200,
+          "y": 776
+        }
+      },
+      "next": "Step3_Prompt1_ResponseAssign"
+    },
+    "Step3_Prompt1_ResponseAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt1_ResponseAssign",
+      "value": {
+        "variable": "a1",
+        "expression": "{{input}}"
+      },
+      "data": {
+        "position": {
+          "x": 200,
+          "y": 851
+        }
+      },
+      "next": "Step3_Prompt1_Branch"
+    },
+    "Step3_Prompt1_Branch": {
+      "type": "branch",
+      "name": "Step3_Prompt1_Branch",
+      "value": {
+        "variable": "a1",
+        "match": [
+          {
+            "pattern": "Pay Council Tax",
+            "next": "Step3_Prompt2_PromptAssign"
+          },
+          {
+            "pattern": "Pay a Parking Fine",
+            "next": "Step3_Prompt5_PromptAssign"
+          },
+          {
+            "pattern": "Child Birth Registration",
+            "next": "Step3_Prompt10_PromptAssign"
+          },
+          {
+            "pattern": "Registration of the Deceased",
+            "next": "Step3_Prompt11_PromptAssign"
+          }
+        ],
+        "nomatch": "Step5_SessionClose1_CloseText"
+      },
+      "data": {
+        "position": {
+          "x": 500,
+          "y": 350
+        },
+        "label": "Step3 Prompt Branch"
+      }
+    },
+    "Step3_Prompt2_PromptAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt2_PromptAssign",
+      "value": {
+        "variable": "q2",
+        "expression": "Please enter the reference number on your latest Council Tax bill"
+      },
+      "data": {
+        "position": {
+          "x": 500,
+          "y": 500
+        },
+        "label": "Step3 Prompt 2"
+      },
+      "next": "Step3_Prompt2_Prompt"
+    },
+    "Step3_Prompt2_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt2_Prompt",
+      "value": {
+        "text": "Please enter the reference number on your latest Council Tax bill"
+      },
+      "data": {
+        "position": {
+          "x": 500,
+          "y": 600
+        },
+        "description": "input"
+      },
+      "next": "Step3_Prompt2_Action"
+    },
+    "Step3_Prompt2_Action": {
+      "type": "output",
+      "name": "Step3_Prompt2_Action",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/essentials/textfield.html",
+        "replace": {
+          "PLACEHOLDER": "AC01...",
+          "PATTERN": ".+",
+          "SIZE": "25"
+        }
+      },
+      "data": {
+        "position": {
+          "x": 500,
+          "y": 788
+        },
+        "description": "AC01..."
+      },
+      "next": "Step3_Prompt2_ActionResponse"
+    },
+    "Step3_Prompt2_ActionResponse": {
+      "type": "input",
+      "name": "Step3_Prompt2_ActionResponse",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 500,
+          "y": 888
+        }
+      },
+      "next": "Step3_Prompt2_ResponseAssign"
+    },
+    "Step3_Prompt2_ResponseAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt2_ResponseAssign",
+      "value": {
+        "variable": "a2",
+        "expression": "{{input}}"
+      },
+      "data": {
+        "position": {
+          "x": 500,
+          "y": 963
+        }
+      },
+      "next": "Step3_Template-contact3_AssignVariable"
+    },
+    "Step3_Template-contact3_AssignVariable": {
+      "type": "assign",
+      "name": "Step3_Template-contact3_AssignVariable",
+      "value": {
+        "variable": "contactchoices",
+        "expression": "Name,Email,Address"
+      },
+      "data": {
+        "position": {
+          "x": 800,
+          "y": 350
+        },
+        "label": "Step3 Template-contact"
+      },
+      "next": "Step3_Template-contact3_AssignVariable_3380"
+    },
+    "Step3_Template-contact3_AssignVariable_3380": {
+      "type": "assign",
+      "name": "Step3_Template-contact3_AssignVariable_3380",
+      "value": {
+        "variable": "templateheight",
+        "expression": "360px"
+      },
+      "data": {
+        "position": {
+          "x": 800,
+          "y": 500
+        },
+        "label": "Step3 Template-contact"
+      },
+      "next": "Step3_Prompt3_Prompt"
+    },
+    "Step3_Prompt3_Prompt": {
+      "type": "goto",
+      "name": "Step3_Prompt3_Prompt",
+      "value": {
+        "name": "template_contact"
+      },
+      "data": {
+        "position": {
+          "x": 800,
+          "y": 650
+        },
+        "label": "Step3 Prompt 3"
+      },
+      "next": "Step3_Prompt8_Prompt"
+    },
+    "Step3_Prompt8_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt8_Prompt",
+      "value": {
+        "text": "Thank you for your details. The link below will take you to our secure payment site."
+      },
+      "data": {
+        "position": {
+          "x": 800,
+          "y": 800
+        },
+        "label": "Step3 Prompt 8"
+      },
+      "next": "Step3_Prompt4_Media"
+    },
+    "Step3_Prompt4_Media": {
+      "type": "output",
+      "name": "Step3_Prompt4_Media",
+      "value": {
+        "mediatype": "html",
+        "type": "chat",
+        "text": "<a class=\"action\" action=\"url=http://councilusecase.epizy.com/clickamount.php\">Secure Payment</a>"
+      },
+      "data": {
+        "position": {
+          "x": 1100,
+          "y": 50
+        },
+        "label": "Step3 Prompt 4"
+      },
+      "next": "Step5_SessionClose1_CloseText"
+    },
+    "Step3_Prompt5_PromptAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt5_PromptAssign",
+      "value": {
+        "variable": "q5",
+        "expression": "Please enter the PCN reference on your parking fine"
+      },
+      "data": {
+        "position": {
+          "x": 1100,
+          "y": 200
+        },
+        "label": "Step3 Prompt 5"
+      },
+      "next": "Step3_Prompt5_Prompt"
+    },
+    "Step3_Prompt5_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt5_Prompt",
+      "value": {
+        "text": "Please enter the PCN reference on your parking fine"
+      },
+      "data": {
+        "position": {
+          "x": 1100,
+          "y": 300
+        },
+        "description": "input"
+      },
+      "next": "Step3_Prompt5_Action"
+    },
+    "Step3_Prompt5_Action": {
+      "type": "output",
+      "name": "Step3_Prompt5_Action",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/essentials/textfield.html",
+        "replace": {
+          "PLACEHOLDER": "PCN01...",
+          "PATTERN": ".+",
+          "SIZE": "25"
+        }
+      },
+      "data": {
+        "position": {
+          "x": 1100,
+          "y": 453
+        },
+        "description": "PCN01..."
+      },
+      "next": "Step3_Prompt5_ActionResponse"
+    },
+    "Step3_Prompt5_ActionResponse": {
+      "type": "input",
+      "name": "Step3_Prompt5_ActionResponse",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 1100,
+          "y": 553
+        }
+      },
+      "next": "Step3_Prompt5_ResponseAssign"
+    },
+    "Step3_Prompt5_ResponseAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt5_ResponseAssign",
+      "value": {
+        "variable": "a5",
+        "expression": "{{input}}"
+      },
+      "data": {
+        "position": {
+          "x": 1100,
+          "y": 628
+        }
+      },
+      "next": "Step3_Template-contact6_AssignVariable"
+    },
+    "Step3_Template-contact6_AssignVariable": {
+      "type": "assign",
+      "name": "Step3_Template-contact6_AssignVariable",
+      "value": {
+        "variable": "contactchoices",
+        "expression": "Name,Email,Address"
+      },
+      "data": {
+        "position": {
+          "x": 1400,
+          "y": 50
+        },
+        "label": "Step3 Template-contact"
+      },
+      "next": "Step3_Template-contact6_AssignVariable_3606"
+    },
+    "Step3_Template-contact6_AssignVariable_3606": {
+      "type": "assign",
+      "name": "Step3_Template-contact6_AssignVariable_3606",
+      "value": {
+        "variable": "templateheight",
+        "expression": "360px"
+      },
+      "data": {
+        "position": {
+          "x": 1400,
+          "y": 200
+        },
+        "label": "Step3 Template-contact"
+      },
+      "next": "Step3_Prompt6_Prompt"
+    },
+    "Step3_Prompt6_Prompt": {
+      "type": "goto",
+      "name": "Step3_Prompt6_Prompt",
+      "value": {
+        "name": "template_contact"
+      },
+      "data": {
+        "position": {
+          "x": 1400,
+          "y": 350
+        },
+        "label": "Step3 Prompt 6"
+      },
+      "next": "Step3_Prompt9_Prompt"
+    },
+    "Step3_Prompt9_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt9_Prompt",
+      "value": {
+        "text": "Thank you for your details. The link below will take you to our secure payment site."
+      },
+      "data": {
+        "position": {
+          "x": 1400,
+          "y": 500
+        },
+        "label": "Step3 Prompt 9"
+      },
+      "next": "Step3_Prompt7_Media"
+    },
+    "Step3_Prompt7_Media": {
+      "type": "output",
+      "name": "Step3_Prompt7_Media",
+      "value": {
+        "mediatype": "html",
+        "type": "chat",
+        "text": "<a class=\"action\" action=\"url=http://councilusecase.epizy.com/clickamount.php\">Secure Payment</a>"
+      },
+      "data": {
+        "position": {
+          "x": 1400,
+          "y": 650
+        },
+        "label": "Step3 Prompt 7"
+      },
+      "next": "Step5_SessionClose1_CloseText"
+    },
+    "Step3_Prompt10_PromptAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt10_PromptAssign",
+      "value": {
+        "variable": "q10",
+        "expression": "We now offer a online registration option, would you like to proceed with the online form or book an appointment?"
+      },
+      "data": {
+        "position": {
+          "x": 1103,
+          "y": 829
+        },
+        "label": "Child Birth Registration "
+      },
+      "next": "Step3_Prompt10_Prompt"
+    },
+    "Step3_Prompt10_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt10_Prompt",
+      "value": {
+        "text": "We now offer a online registration option, would you like to proceed with the online form or book an appointment?",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 1158,
+          "y": 998
+        },
+        "description": "selection"
+      },
+      "next": "Step3_Prompt10_Action"
+    },
+    "Step3_Prompt10_Action": {
+      "type": "output",
+      "name": "Step3_Prompt10_Action",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/essentials/choices.html",
+        "replace": {},
+        "data": {
+          "values": [
+            {
+              "name": "Online"
+            },
+            {
+              "name": "Appointment"
+            }
+          ]
+        }
+      },
+      "data": {
+        "position": {
+          "x": 1239,
+          "y": 1111
+        },
+        "description": "Online__Appointment"
+      },
+      "next": "Step3_Prompt10_ActionResponse"
+    },
+    "Step3_Prompt10_ActionResponse": {
+      "type": "input",
+      "name": "Step3_Prompt10_ActionResponse",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 1288,
+          "y": 1217
+        }
+      },
+      "next": "node20181670"
+    },
+    "Step3_Prompt11_PromptAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt11_PromptAssign",
+      "value": {
+        "variable": "q11",
+        "expression": "In order to register a death, you either complete online or book an appointment"
+      },
+      "data": {
+        "position": {
+          "x": 1700,
+          "y": 648
+        },
+        "label": "Step3 Prompt 11"
+      },
+      "next": "Step3_Prompt11_Prompt"
+    },
+    "Step3_Prompt11_Prompt": {
+      "type": "output",
+      "name": "Step3_Prompt11_Prompt",
+      "value": {
+        "text": "In order to register a death, you either complete online or book an appointment",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 1700,
+          "y": 750
+        },
+        "description": "selection"
+      },
+      "next": "Step3_Prompt11_Action"
+    },
+    "Step3_Prompt11_Action": {
+      "type": "output",
+      "name": "Step3_Prompt11_Action",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/essentials/choices.html",
+        "replace": {},
+        "data": {
+          "values": [
+            {
+              "name": "Online"
+            },
+            {
+              "name": "Appointment"
+            }
+          ]
+        }
+      },
+      "data": {
+        "position": {
+          "x": 1700,
+          "y": 971
+        },
+        "description": "Online__Appointment"
+      },
+      "next": "Step3_Prompt11_ActionResponse"
+    },
+    "Step3_Prompt11_ActionResponse": {
+      "type": "input",
+      "name": "Step3_Prompt11_ActionResponse",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 1700,
+          "y": 1073
+        }
+      },
+      "next": "Step3_Prompt11_ResponseAssign"
+    },
+    "Step3_Prompt11_ResponseAssign": {
+      "type": "assign",
+      "name": "Step3_Prompt11_ResponseAssign",
+      "value": {
+        "variable": "a11",
+        "expression": "{{input}}"
+      },
+      "data": {
+        "position": {
+          "x": 1724,
+          "y": 1153
+        }
+      },
+      "next": "Step3_Prompt11_Branch"
+    },
+    "Step3_Prompt11_Branch": {
+      "type": "branch",
+      "name": "Step3_Prompt11_Branch",
+      "value": {
+        "variable": "a11",
+        "match": [
+          {
+            "pattern": "Appointment",
+            "next": "node66600457"
+          }
+        ],
+        "nomatch": "Step5_SessionClose1_CloseText"
+      },
+      "data": {
+        "position": {
+          "x": 1999,
+          "y": 500
+        },
+        "label": "Step3 Prompt Branch"
+      }
+    },
+    "Step3_Template-notify-email12_AssignVariable": {
+      "type": "assign",
+      "name": "Step3_Template-notify-email12_AssignVariable",
+      "value": {
+        "variable": "templateemail",
+        "expression": "NotSet"
+      },
+      "data": {
+        "position": {
+          "x": 1914,
+          "y": 103
+        },
+        "label": "Step3 Template-notify-email"
+      },
+      "next": "Step3_Template-notify-email12_AssignVariable_2883"
+    },
+    "Step3_Template-notify-email12_AssignVariable_2883": {
+      "type": "assign",
+      "name": "Step3_Template-notify-email12_AssignVariable_2883",
+      "value": {
+        "variable": "templatesubject",
+        "expression": "test"
+      },
+      "data": {
+        "position": {
+          "x": 2003,
+          "y": 73
+        },
+        "label": "Step3 Template-notify-email"
+      },
+      "next": "Step3_Template-notify-email12_AssignVariable_9472"
+    },
+    "Step3_Template-notify-email12_AssignVariable_9472": {
+      "type": "assign",
+      "name": "Step3_Template-notify-email12_AssignVariable_9472",
+      "value": {
+        "variable": "templatemsg",
+        "expression": "here is the link to book "
+      },
+      "data": {
+        "position": {
+          "x": 2300,
+          "y": 50
+        },
+        "label": "Step3 Template-notify-email"
+      },
+      "next": "Step3_Template-notify-email12_AssignVariable_2288"
+    },
+    "Step3_Template-notify-email12_AssignVariable_2288": {
+      "type": "assign",
+      "name": "Step3_Template-notify-email12_AssignVariable_2288",
+      "value": {
+        "variable": "templatelink",
+        "expression": "https://www.avayausecase.com/booking-page"
+      },
+      "data": {
+        "position": {
+          "x": 2300,
+          "y": 204
+        },
+        "label": "Step3 Template-notify-email"
+      },
+      "next": "Step3_Template-notify-email12_AssignVariable_1111"
+    },
+    "Step3_Template-notify-email12_AssignVariable_1111": {
+      "type": "assign",
+      "name": "Step3_Template-notify-email12_AssignVariable_1111",
+      "value": {
+        "variable": "linktype",
+        "expression": "link"
+      },
+      "data": {
+        "position": {
+          "x": 2300,
+          "y": 350
+        },
+        "label": "Step3 Template-notify-email"
+      },
+      "next": "Step3_Prompt12_Prompt"
+    },
+    "Step3_Prompt12_Prompt": {
+      "type": "goto",
+      "name": "Step3_Prompt12_Prompt",
+      "value": {
+        "name": "template_notify_email"
+      },
+      "data": {
+        "position": {
+          "x": 2300,
+          "y": 500
+        },
+        "label": "Step3 Prompt 12"
+      },
+      "next": "Step5_SessionClose1_CloseText"
+    },
+    "Step5_SessionClose1_CloseText": {
+      "type": "output",
+      "name": "Step5_SessionClose1_CloseText",
+      "value": {
+        "text": "Thank you for using this service with Avaya Council Council",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 2300,
+          "y": 667
+        },
+        "label": "Step5 SessionClose"
+      }
+    },
+    "node66600457": {
+      "type": "assign",
+      "name": "node66600457",
+      "value": {
+        "variable": "email",
+        "expression": "{{input}}"
+      },
+      "data": {
+        "position": {
+          "x": 2038,
+          "y": 1410
+        },
+        "label": "email address"
+      },
+      "next": "node19117390"
+    },
+    "node14744275": {
+      "type": "displaycontrol",
+      "name": "node14744275",
+      "value": {},
+      "data": {
+        "position": {
+          "x": -5048,
+          "y": -5014
+        }
+      }
+    },
+    "node69072277": {
+      "type": "output",
+      "name": "node69072277",
+      "value": {
+        "text": "Thank you, your appointment to register a deceased has been booked. You will shortly receive an email with the required documents",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 2031,
+          "y": 1779
+        }
+      }
+    },
+    "node19732278": {
+      "type": "input",
+      "name": "node19732278",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 2073,
+          "y": 1662
+        }
+      },
+      "next": "node69072277"
+    },
+    "node20181670": {
+      "type": "branch",
+      "name": "node20181670",
+      "value": {
+        "match": [
+          {
+            "pattern": "Online",
+            "next": "node93541146"
+          }
+        ],
+        "variable": "input"
+      },
+      "data": {
+        "position": {
+          "x": 1034,
+          "y": 1251
+        }
+      }
+    },
+    "node93541146": {
+      "type": "output",
+      "name": "node93541146",
+      "value": {
+        "text": "Thank you, can you please fill in the table below. \nCheck the registration entry carefully before you sign to confirm that information you have given is correct. Once you have signed the register entry, changes/corrections cannot be made without a formal process and will incur a fee of £75 to £90 depending on the nature of the correction.\n",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 582,
+          "y": 1173
+        }
+      },
+      "next": "node35005517"
+    },
+    "node19117390": {
+      "type": "output",
+      "name": "node19117390",
+      "value": {
+        "type": "inlinewidget",
+        "mediatype": "url",
+        "url": "providers/0/widgets/common/schedule/index.html?mode=chat&calendar=Deceased%20Registration&provider=%7B%7Bprovider.id%7D%7D&email=%7B%7Bcustomeremail%7D%7D&duration=30&subject=deceased%20Registration%20&message=info&prompt=Appointment%20scheduled%20at%20%7Bdatetime%7D%20duration%20%7Bduration%7D%20minutes%20for%20%7Bsubject%7D&prompt_cancel=Scheduling%20cancelled&bgcolor=transparent",
+        "style": "width: 500px; height: 600px; background-color: transparent; border: none;"
+      },
+      "data": {
+        "position": {
+          "x": 1997,
+          "y": 1550
+        }
+      },
+      "next": "node19732278"
+    },
+    "node35005517": {
+      "type": "output",
+      "name": "node35005517",
+      "value": {
+        "type": "inlinewidget",
+        "mediatype": "url",
+        "url": "providers/274330/widgets/birth-reg.html",
+        "style": "width: 500px; height: 700px;"
+      },
+      "data": {
+        "position": {
+          "x": 608,
+          "y": 1423
+        }
+      },
+      "next": "node05422968"
+    },
+    "node18266993": {
+      "type": "output",
+      "name": "node18266993",
+      "value": {
+        "type": "inlinewidget",
+        "mediatype": "url",
+        "url": "providers/274330/widgets/mother-reg.html",
+        "style": "width: 500px; height: 600px; border: none;"
+      },
+      "data": {
+        "position": {
+          "x": 348,
+          "y": 1841
+        }
+      },
+      "next": "node29333038"
+    },
+    "node28901911": {
+      "type": "output",
+      "name": "node28901911",
+      "value": {
+        "type": "inlinewidget",
+        "mediatype": "url",
+        "url": "providers/274330/widgets/father-reg.html",
+        "style": "width: 500px; height: 600px; border: none;"
+      },
+      "data": {
+        "position": {
+          "x": 520,
+          "y": 2258
+        }
+      },
+      "next": "node40772684"
+    },
+    "node28045262": {
+      "type": "output",
+      "name": "node28045262",
+      "value": {
+        "type": "inlinewidget",
+        "mediatype": "url",
+        "url": "providers/0/widgets/common/essentials/get-details.html?choices=Name%2CEmail&color=%2367ba1d",
+        "style": "width: 500px; height: 500px; border: none;"
+      },
+      "data": {
+        "position": {
+          "x": 1245,
+          "y": 1410
+        }
+      },
+      "next": "node42695097"
+    },
+    "node42695097": {
+      "type": "input",
+      "name": "node42695097",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 1148,
+          "y": 725
+        }
+      }
+    },
+    "node05825801": {
+      "type": "input",
+      "name": "node05825801",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 989,
+          "y": 1429
+        }
+      }
+    },
+    "node29333038": {
+      "type": "output",
+      "name": "node29333038",
+      "value": {
+        "text": "Please review and confirm the info is correct before continuing",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 509,
+          "y": 1948
+        }
+      },
+      "next": "node68654246"
+    },
+    "node71819914": {
+      "type": "output",
+      "name": "node71819914",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/common/choices.html",
+        "data": {
+          "values": [
+            {
+              "name": "Confirm"
+            },
+            {
+              "name": "Cancel"
+            }
+          ]
+        },
+        "replace": {
+          "PLACEHOLDER": "xxxx-yyyy",
+          "PATTERN": "\\d{4,4}-\\d{4,4}",
+          "SIZE": "9",
+          "MESSAGE_TYPE": "chat"
+        }
+      },
+      "data": {
+        "position": {
+          "x": 581,
+          "y": 1635
+        }
+      },
+      "next": "node45185452"
+    },
+    "node45185452": {
+      "type": "input",
+      "name": "node45185452",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 630,
+          "y": 1724
+        }
+      },
+      "next": "node18266993"
+    },
+    "node05422968": {
+      "type": "output",
+      "name": "node05422968",
+      "value": {
+        "text": "Please review and confirm the info is correct before continuing",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 528,
+          "y": 1536
+        }
+      },
+      "next": "node71819914"
+    },
+    "node68654246": {
+      "type": "output",
+      "name": "node68654246",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/common/choices.html",
+        "data": {
+          "values": [
+            {
+              "name": "Confirm"
+            },
+            {
+              "name": "Cancel"
+            }
+          ]
+        },
+        "replace": {
+          "PLACEHOLDER": "xxxx-yyyy",
+          "PATTERN": "\\d{4,4}-\\d{4,4}",
+          "SIZE": "9",
+          "MESSAGE_TYPE": "chat"
+        }
+      },
+      "data": {
+        "position": {
+          "x": 517,
+          "y": 2042
+        }
+      },
+      "next": "node70553805"
+    },
+    "node70553805": {
+      "type": "input",
+      "name": "node70553805",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 548,
+          "y": 2138
+        }
+      },
+      "next": "node28901911"
+    },
+    "node40772684": {
+      "type": "output",
+      "name": "node40772684",
+      "value": {
+        "text": "Please review and confirm the info is correct before continuing",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 439,
+          "y": 2405
+        }
+      },
+      "next": "node20818850"
+    },
+    "node20818850": {
+      "type": "output",
+      "name": "node20818850",
+      "value": {
+        "type": "htmlwidget",
+        "mediatype": "url",
+        "url": "providers/0/components/common/choices.html",
+        "data": {
+          "values": [
+            {
+              "name": "Confirm"
+            },
+            {
+              "name": "Cancel"
+            }
+          ]
+        },
+        "replace": {
+          "PLACEHOLDER": "xxxx-yyyy",
+          "PATTERN": "\\d{4,4}-\\d{4,4}",
+          "SIZE": "9",
+          "MESSAGE_TYPE": "chat"
+        }
+      },
+      "data": {
+        "position": {
+          "x": 474,
+          "y": 2508
+        }
+      },
+      "next": "node79367617"
+    },
+    "node79367617": {
+      "type": "input",
+      "name": "node79367617",
+      "value": {},
+      "data": {
+        "position": {
+          "x": 540,
+          "y": 2578
+        }
+      },
+      "next": "node12830312"
+    },
+    "node63172645": {
+      "type": "output",
+      "name": "node63172645",
+      "value": {
+        "type": "inlinewidget",
+        "mediatype": "url",
+        "url": "providers/0/widgets/common/notify/index.html?type=email&body=Enter%20message%20text%20here&response=true&subject=Birth%20Registration%20Confirmation&recipient=price229%40avaya.com&link=https%3A%2F%2Fspaces.zang.io%2Fu%2Fprice229%40avaya.com",
+        "style": "width: 0px; height: 0px; visibility: hidden;",
+        "allow": [
+          "customer",
+          "guest"
+        ]
+      },
+      "data": {
+        "position": {
+          "x": 934,
+          "y": 2018
+        }
+      }
+    },
+    "node12830312": {
+      "type": "output",
+      "name": "node12830312",
+      "value": {
+        "text": "Your details have been submitted successfully. \nYou will shortly receive an email the required document you need to send over. \n\nThank you ",
+        "type": "chat",
+        "mediatype": "text"
+      },
+      "data": {
+        "position": {
+          "x": 905,
+          "y": 1858
+        }
+      },
+      "next": "node63172645"
+    }
+  },
+  "essentials_metadata": {
+    "version": "3.0",
+    "type": "context_assistant",
+    "bot": "100893",
+    "name": "Avaya County Council",
+    "step1_nodes": {
+      "greetings": [
+        {
+          "label": "Initial greeting",
+          "greeting": "Welcome to Avaya County Council. My name is Avi."
+        }
+      ]
+    },
+    "step2_nodes": {
+      "choices": []
+    },
+    "step3_nodes": {
+      "main": {
+        "type": "entry",
+        "next": "Q1"
+      },
+      "Q1": {
+        "name": "Q1",
+        "type": "selection",
+        "question": "Please let me know what I can help you with?",
+        "choices": [
+          {
+            "pattern": "Pay Council Tax",
+            "next": "Q2"
+          },
+          {
+            "pattern": "Pay a Parking Fine",
+            "next": "Q5"
+          },
+          {
+            "pattern": "Child Birth Registration",
+            "next": "Q10"
+          },
+          {
+            "pattern": "Registration of the Deceased",
+            "next": "Q11"
+          }
+        ],
+        "branch": true
+      },
+      "Q2": {
+        "name": "Q2",
+        "type": "input",
+        "question": "Please enter the reference number on your latest Council Tax bill",
+        "choices": [
+          {
+            "pattern": "AC01..."
+          }
+        ],
+        "branch": false,
+        "next": "Q3"
+      },
+      "Q3": {
+        "name": "Q3",
+        "type": "template",
+        "question": "contact",
+        "data": {
+          "contactchoices": "Name,Email,Address",
+          "templateheight": "360px"
+        },
+        "branch": false,
+        "next": "Q8"
+      },
+      "Q4": {
+        "name": "Q4",
+        "type": "link",
+        "question": "Secure Payment",
+        "choices": [
+          {
+            "pattern": "http://councilusecase.epizy.com/clickamount.php"
+          }
+        ],
+        "branch": false
+      },
+      "Q5": {
+        "name": "Q5",
+        "type": "input",
+        "question": "Please enter the PCN reference on your parking fine",
+        "choices": [
+          {
+            "pattern": "PCN01..."
+          }
+        ],
+        "branch": false,
+        "next": "Q6"
+      },
+      "Q6": {
+        "name": "Q6",
+        "type": "template",
+        "question": "contact",
+        "data": {
+          "contactchoices": "Name,Email,Address",
+          "templateheight": "360px"
+        },
+        "branch": false,
+        "next": "Q9"
+      },
+      "Q7": {
+        "name": "Q7",
+        "type": "link",
+        "question": "Secure Payment",
+        "choices": [
+          {
+            "pattern": "http://councilusecase.epizy.com/clickamount.php"
+          }
+        ],
+        "branch": false
+      },
+      "Q8": {
+        "name": "Q8",
+        "type": "message",
+        "question": "Thank you for your details. The link below will take you to our secure payment site.",
+        "choices": [],
+        "branch": false,
+        "next": "Q4"
+      },
+      "Q9": {
+        "name": "Q9",
+        "type": "message",
+        "question": "Thank you for your details. The link below will take you to our secure payment site.",
+        "choices": [],
+        "branch": false,
+        "next": "Q7"
+      },
+      "Q10": {
+        "name": "Q10",
+        "type": "selection",
+        "question": "We now offer a online registration option, would you like to proceed with the online form or book an appointment?",
+        "choices": [
+          {
+            "pattern": "Online"
+          },
+          {
+            "pattern": "Appointment"
+          }
+        ],
+        "branch": false
+      },
+      "Q11": {
+        "name": "Q11",
+        "type": "selection",
+        "question": "In order to register a death, you either complete online or book an appointment",
+        "choices": [
+          {
+            "pattern": "Online"
+          },
+          {
+            "pattern": "Appointment",
+            "next": "Q12"
+          }
+        ],
+        "branch": true
+      },
+      "Q12": {
+        "name": "Q12",
+        "type": "template",
+        "question": "notify-email",
+        "data": {
+          "templateemail": "NotSet",
+          "templatesubject": "test",
+          "templatemsg": "here is the link to book ",
+          "templatelink": "https://www.avayausecase.com/booking-page",
+          "linktype": "link",
+          "linkbase": null
+        },
+        "branch": false
+      }
+    },
+    "step4_nodes": {
+      "choices": []
+    },
+    "end_nodes": {
+      "type": "text",
+      "prompt": "Thank you for using this service with Avaya Council Council"
+    }
+  }
+}
