@@ -19,4 +19,4 @@
 1. Avaya Jacks Koopid Flow = JSON file (open in notepad). Holds the chatbot workflow that allows a citizen to go through a smart form for paying council tax and links to a semafone secure payment via webpage. Also has chatbot/smart form appointment booking for birth and death registrations with the local council. Citizen can book an appointment through calendly integration.
 
 ####### Use Case 4 Local Council App #######
-1. app-debug(1).apk = Citizen's app with use cases such as report flytipping/potholes(cpaas/firebase/geolocation), Koopid integration, secure payment of council tax(Koopid/Semafone), birth and death registration(Koopid), appointment booking(Koopid/Calendly), bin collection (dialogflow)
+1. app-debug(1).apk = Citizen's app with use cases such as report flytipping/potholes(cpaas/firebase/geolocation), Koopid integration, secure payment of council tax(Koopid/Semafone), birth and death registration(Koopid), appointment booking(Koopid/Calendly), bin collection (dialogflow), email and password authorization powered by Google Firebase.
